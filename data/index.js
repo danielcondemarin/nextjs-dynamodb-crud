@@ -12,31 +12,32 @@ const client = process.env.LOCAL_DYNAMO_DB_ENDPOINT
   })
   : new AWS.DynamoDB.DocumentClient(options);
 
+const TableName = "Todos"
+
 module.exports = {
   readTodos: async () => {
     const { Items } = await client.scan({
-      TableName: "Todos"
+      TableName
     }).promise()
-
-    console.log("TCL: todos", Items)
 
     return Items;
   },
   getTodo: async (todoId) => {
     const { Items } = await client.scan({
-      TableName: "Todos"
+      TableName
     }).promise()
 
-    console.log("TCL: Items", Items)
     const todo = Items.find(todo => todo.todoId == todoId);
-    console.log("TCL: todo", todo)
 
     return todo
   },
-  createTodo: async () => {
-    // TODO:
-  },
-  editTodo: async () => {
-    // TODO:
+  createTodo: async (todoDescription) => {
+    await client.put({
+      TableName,
+      Item: {
+        todoId: Date.now(),
+        todoDescription
+      }
+    }).promise()
   }
 }

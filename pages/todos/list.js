@@ -1,18 +1,26 @@
+import { Fragment } from "react"
 import Link from "next/link"
 import data from '../../data'
 
 function ListTodos({ todos }) {
-  return <ul>
-    {todos.map(todo => {
-      const todoDetailsUrl = `/todos/details/${todo.todoId}`;
+  return <Fragment>
+    <ul>
+      {todos.map(todo => {
+        const todoDetailsUrl = `/todos/details/${todo.todoId}`;
 
-      return <li key={todo.todoId}>
-        <Link href={todoDetailsUrl}>
-          <a>{todo.todoDescription}</a>
-        </Link>
-      </li>
-    })}
-  </ul>
+        return <li key={todo.todoId}>
+          <Link href={todoDetailsUrl}>
+            <a>{todo.todoDescription}</a>
+          </Link>
+        </li>
+      })}
+    </ul>
+    <div>
+      <Link href={'/todos/new'}>
+        New Todo
+      </Link>
+    </div>
+  </Fragment>
 }
 
 ListTodos.getInitialProps = async ({ req }) => {

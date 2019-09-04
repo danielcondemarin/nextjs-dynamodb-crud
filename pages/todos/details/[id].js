@@ -4,8 +4,8 @@ import Link from "next/link"
 function TodoDetails({ todo: { todoId, todoDescription } }) {
   return <div>
     <div>
-      <p>Details: {todoId}</p>
-      <p>{todoDescription}</p>
+      <p>Id: {todoId}</p>
+      <p>Description: {todoDescription}</p>
     </div>
     <Link href="/todos/list">
       <a>Back to Todos List</a>
@@ -29,8 +29,8 @@ TodoDetails.getInitialProps = async ({ req, query }) => {
       const response = await fetch(`/api/todos/${query.id}`)
       const todo = await response.json()
       console.log("TCL: TodoDetails.getInitialProps -> todo", todo)
-    } catch(err) {
-      
+    } catch (err) {
+
     }
 
     return { todo }
