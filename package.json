@@ -5,12 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev:infra": "node infrastructure/provisionTable",
-    "dev": "LOCAL_DYNAMO_DB_ENDPOINT=\"http://localhost:8000\" next dev",
-    "build:prod": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "BUNDLE_AWS_SDK=1 LOCAL_DYNAMO_DB_ENDPOINT=\"http://localhost:8000\" next dev"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Daniel Conde Marin <danielconde9@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.521.0",
     "next": "^9.0.5",

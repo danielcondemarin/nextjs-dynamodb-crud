@@ -6,10 +6,8 @@ function ListTodos({ todos }) {
   return <Fragment>
     <ul>
       {todos.map(todo => {
-        const todoDetailsUrl = `/todos/details/${todo.todoId}`;
-
         return <li key={todo.todoId}>
-          <Link href={todoDetailsUrl}>
+          <Link href="/todos/details/[id]" as={`/todos/details/${todo.todoId}`}>
             <a>{todo.todoDescription}</a>
           </Link>
         </li>
@@ -17,7 +15,7 @@ function ListTodos({ todos }) {
     </ul>
     <div>
       <Link href={'/todos/new'}>
-        New Todo
+        <a>New Todo</a>
       </Link>
     </div>
   </Fragment>
